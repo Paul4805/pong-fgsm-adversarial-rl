@@ -1,0 +1,10 @@
+torch>=2.8
+stable-baselines3>=2.9,<3
+gymnasium[atari]>=1.4
+ale-py>=0.12
+gym==0.26.2
+opencv-python
+matplotlib
+pandas
+huggingface_hub
+numpy<2.6

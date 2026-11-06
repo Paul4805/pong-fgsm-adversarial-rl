@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it as below."
+type: software
+title: "L_inf FGSM Attacks on Atari Pong Policies"
+version: 0.1.0
+date-released: 2026-11-06
+authors:
+  - family-names: Masillamani
+    given-names: J Paul
+license: MIT
+repository-code: "https://github.com/Paul4805/pong-fgsm-adversarial-rl"
+keywords:
+  - adversarial machine learning
+  - FGSM
+  - reinforcement learning
+  - Atari Pong
+  - DQN
+  - A2C

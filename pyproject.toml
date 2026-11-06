@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rai-pong-fgsm"
+version = "0.1.0"
+description = "L_inf FGSM adversarial attacks on DQN and A2C Atari Pong policies"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+  { name = "J Paul Masillamani", email = "jpaulmasillamani@gmail.com" },
+]
+keywords = ["adversarial-machine-learning", "fgsm", "reinforcement-learning", "atari", "pong", "dqn", "a2c"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: OS Independent",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "torch>=2.8",
+  "stable-baselines3>=2.9,<3",
+  "gymnasium[atari]>=1.4",
+  "ale-py>=0.12",
+  "gym==0.26.2",
+  "opencv-python",
+  "matplotlib",
+  "pandas",
+  "huggingface_hub",
+  "numpy<2.6",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Paul4805/pong-fgsm-adversarial-rl"
+Issues = "https://github.com/Paul4805/pong-fgsm-adversarial-rl/issues"
+Repository = "https://github.com/Paul4805/pong-fgsm-adversarial-rl"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
