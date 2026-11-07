@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rai-pong-fgsm"
-version = "0.1.0"
+version = "0.2.0"
 description = "L_inf FGSM adversarial attacks on DQN and A2C Atari Pong policies"
 readme = "README.md"
 requires-python = ">=3.10"

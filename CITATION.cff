@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this project, please cite it as below."
 type: software
 title: "L_inf FGSM Attacks on Atari Pong Policies"
-version: 0.1.0
-date-released: 2026-11-06
+version: 0.2.0
+date-released: 2026-11-07
 authors:
   - family-names: Masillamani
     given-names: J Paul

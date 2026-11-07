@@ -1,0 +1,261 @@
+{
+  "config": {
+    "stage": "all",
+    "device": "auto",
+    "seed": 2026,
+    "episodes": 10,
+    "max_steps": 10000,
+    "data_episodes": 12,
+    "max_transitions": 6000,
+    "observation_stride": 4,
+    "ae_epochs": 12,
+    "ae_batch_size": 128,
+    "ae_lr": 0.001,
+    "ae_noise_std": 0.01,
+    "ae_sign_noise_eps": 0.005,
+    "vq_k": 128,
+    "vq_patch_size": 6,
+    "vq_iterations": 25,
+    "vq_max_patches": 200000,
+    "detector_fpr": 0.01,
+    "recon_sample_size": 128,
+    "d_epochs": 8,
+    "d_batch_size": 64,
+    "d_lr": 0.0001,
+    "d_adv_fraction": 1.0,
+    "d_loss_mode": "margin",
+    "d_eps": [
+      0.005,
+      0.01
+    ],
+    "d_margin": 1.0,
+    "d_eval_episodes": 3,
+    "capture_steps": [
+      0,
+      50,
+      150,
+      300,
+      600
+    ],
+    "artifacts": "C:\\Users\\J Paul Masillamni\\Documents\\projects\\rai\\artifacts\\defense_benchmark",
+    "results": "C:\\Users\\J Paul Masillamni\\Documents\\projects\\rai\\results\\defense_benchmark",
+    "no_visualize": false
+  },
+  "data": {
+    "episodes": 12,
+    "frames": 20038,
+    "observations": 5015,
+    "transitions": 6000,
+    "env_steps": 20038,
+    "collection_seconds": 65.90484519989695
+  },
+  "autoencoder": {
+    "epochs": 12,
+    "batch_size": 128,
+    "learning_rate": 0.001,
+    "noise_std": 0.01,
+    "sign_noise_eps": 0.005,
+    "train_frames": 18035,
+    "val_frames": 2003,
+    "train_seconds": 50.5541377000045,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.013492819581491252,
+        "val_clean_mse": 0.000806571625871883,
+        "val_noisy_mse": 0.000908135384512141
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.000612330593247997,
+        "val_clean_mse": 0.0005142691129136462,
+        "val_noisy_mse": 0.0006138009298521216
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.0004669162572744626,
+        "val_clean_mse": 0.00041612267887327004,
+        "val_noisy_mse": 0.0005181937675951074
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.0003928286260809644,
+        "val_clean_mse": 0.0003629654371521547,
+        "val_noisy_mse": 0.0004622246267236515
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.00034500572686777155,
+        "val_clean_mse": 0.00030404064146124984,
+        "val_noisy_mse": 0.0004054854945967683
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.0002863948912102174,
+        "val_clean_mse": 0.00025184486152821784,
+        "val_noisy_mse": 0.0003536166092532822
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.0002466895038977014,
+        "val_clean_mse": 0.00023157470542404886,
+        "val_noisy_mse": 0.00033935799693060126
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.00021103053854890696,
+        "val_clean_mse": 0.00016720279084325897,
+        "val_noisy_mse": 0.00026860810957729785
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.0001550659328634712,
+        "val_clean_mse": 0.00014311688212152208,
+        "val_noisy_mse": 0.0002429627950105588
+      },
+      {
+        "epoch": 10,
+        "train_loss": 0.00014007536996591915,
+        "val_clean_mse": 0.00012581120206754345,
+        "val_noisy_mse": 0.00022645840454975643
+      },
+      {
+        "epoch": 11,
+        "train_loss": 0.0001266800714053993,
+        "val_clean_mse": 0.00012000589996715887,
+        "val_noisy_mse": 0.00022004975909315215
+      },
+      {
+        "epoch": 12,
+        "train_loss": 0.0001266672476075081,
+        "val_clean_mse": 0.00010924734967739788,
+        "val_noisy_mse": 0.0002106968220694768
+      }
+    ],
+    "parameters": 133777,
+    "clean_reconstruction_mse": 0.00011021439963243333,
+    "adversarial_reconstruction_mse": 0.00012237035464537658,
+    "detector_threshold": 0.00015936229494400322,
+    "detector_fpr_target": 0.01,
+    "detector_fpr_calibration": 0.010169491525423728,
+    "detector_tpr_sample": 0.140625,
+    "calibration_observations": 5015,
+    "reconstruction_sample_size": 128
+  },
+  "vq": {
+    "k": 128,
+    "patch_size": 6,
+    "max_patches": 200000,
+    "iterations": 25,
+    "train_seconds": 1.126007099985145,
+    "patch_distortion_mse": 3.4069559772809345e-05,
+    "codebook_utilization": 0.7890625,
+    "used_codes": 101,
+    "total_patches_trained": 200000,
+    "parameters": 4608,
+    "clean_distortion_mse": 3.5449599245942045e-05,
+    "clean_codebook_utilization": 0.8046875
+  },
+  "robust_dqn": {
+    "mode": "offline_fgsm_adversarial_finetune_margin",
+    "loss_mode": "margin",
+    "distill_weight": 1.0,
+    "margin_weight": 0.25,
+    "margin": 1.0,
+    "epochs": 8,
+    "batch_size": 64,
+    "learning_rate": 0.0001,
+    "adversarial_fraction": 1.0,
+    "epsilon_choices": [
+      0.005,
+      0.01
+    ],
+    "gamma": 0.99,
+    "transitions": 6000,
+    "global_steps": 376,
+    "train_seconds": 37.39226590003818,
+    "max_vram_mb": 172.007936,
+    "best_clean_return": 21.0,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.504147875499218,
+        "clean_return": 20.333333333333332,
+        "batches": 94
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.4992647275645682,
+        "clean_return": 21.0,
+        "batches": 94
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.4967847615480423,
+        "clean_return": 21.0,
+        "batches": 94
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.4922520188575095,
+        "clean_return": 21.0,
+        "batches": 94
+      }
+    ],
+    "checkpoint": "C:\\Users\\J Paul Masillamni\\Documents\\projects\\rai\\artifacts\\defense_benchmark\\defense_d_robust_dqn.zip",
+    "final_clean_return": 21.0
+  },
+  "timings": {
+    "data_collection_seconds": 65.90484519989695,
+    "autoencoder_train_seconds": 50.61707949999254,
+    "vq_train_seconds": 1.1276989999460056,
+    "adversarial_finetune_seconds": 37.46993260004092,
+    "evaluation_seconds": 1150.808640900068
+  },
+  "defenses": {
+    "baseline": {
+      "description": "Frozen pre-trained DQN, no input defense.",
+      "params": 0,
+      "extra_latency_ms": 0.0,
+      "train_seconds": 0.0
+    },
+    "A_autoencoder": {
+      "description": "All observations are reconstructed by the clean-trained denoising AE.",
+      "params": 133777,
+      "extra_latency_ms": 1.2627366658610604,
+      "train_seconds": 50.61707949999254
+    },
+    "B_detect_denoise": {
+      "description": "Reconstruction-error detector; flagged observations are denoised.",
+      "params": 133777,
+      "extra_latency_ms": 1.348080000995348,
+      "train_seconds": 50.61707949999254
+    },
+    "C_vector_quantization": {
+      "description": "6x6 patch VQ with K=128 codes trained on clean frames.",
+      "params": 4608,
+      "extra_latency_ms": 0.7019899979544183,
+      "train_seconds": 1.1276989999460056
+    },
+    "D_adversarial_training": {
+      "description": "DQN fine-tuned on mixed clean and FGSM-perturbed transitions.",
+      "params": 3374412,
+      "extra_latency_ms": 0.0,
+      "train_seconds": 37.46993260004092
+    }
+  },
+  "environment": {
+    "env_id": "PongNoFrameskip-v4",
+    "ale_env_id": "ALE/Pong-v5",
+    "observation_space": "Box(0.0, 1.0, (4, 84, 84), float32)",
+    "action_space": "Discrete(6)",
+    "action_meanings": [
+      "NOOP",
+      "FIRE",
+      "RIGHT",
+      "LEFT",
+      "RIGHTFIRE",
+      "LEFTFIRE"
+    ]
+  }
+}

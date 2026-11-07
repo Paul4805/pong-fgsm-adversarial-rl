@@ -139,6 +139,14 @@ def _feature_extractors(policy: Any, algo: str) -> list[torch.nn.Module]:
     return unique
 
 
+def _set_unit_interval_observation_space(model: Any) -> None:
+    obs_shape = model.observation_space.shape
+    normalized_space = spaces.Box(low=0.0, high=1.0, shape=obs_shape, dtype=np.float32)
+    model.observation_space = normalized_space
+    model.policy.observation_space = normalized_space
+    model._rai_unit_interval_input = True
+
+
 def rescale_model_to_unit_interval(model: Any, algo: str, scale: float = 255.0) -> None:
     """Make a model trained on [0, 255] accept [0, 1] observations exactly.
 
@@ -156,11 +164,7 @@ def rescale_model_to_unit_interval(model: Any, algo: str, scale: float = 255.0) 
         with torch.no_grad():
             conv.weight.mul_(scale)
 
-    obs_shape = model.observation_space.shape
-    normalized_space = spaces.Box(low=0.0, high=1.0, shape=obs_shape, dtype=np.float32)
-    model.observation_space = normalized_space
-    model.policy.observation_space = normalized_space
-    model._rai_unit_interval_input = True
+    _set_unit_interval_observation_space(model)
 
 
 def _resolve_device(device: str | torch.device | None) -> torch.device:
@@ -237,8 +241,14 @@ def load_agent(
     checkpoint: str | Path | None = None,
     device: str | torch.device | None = "auto",
     name: str | None = None,
+    already_normalized: bool = False,
 ) -> PolicyAgent:
-    """Load a DQN/A2C checkpoint and prepare it for normalized observations."""
+    """Load a DQN/A2C checkpoint and prepare it for normalized observations.
+
+    ``already_normalized`` is used for checkpoints produced by this project
+    (for example the adversarially fine-tuned DQN), whose first convolution has
+    already been rescaled for [0, 1] inputs.
+    """
     algo = algo.lower()
     if algo not in {"dqn", "a2c"}:
         raise ValueError(f"Unsupported algorithm: {algo}")
@@ -265,7 +275,10 @@ def load_agent(
             device=resolved_device,
             custom_objects=CUSTOM_OBJECTS,
         )
-    rescale_model_to_unit_interval(model, algo)
+    if already_normalized:
+        _set_unit_interval_observation_space(model)
+    else:
+        rescale_model_to_unit_interval(model, algo)
     return PolicyAgent(
         model=model,
         algo=algo,
